@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>音乐播放窗口</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* 
+     * 让窗口在不放大的情况下就能看到播放按钮和关闭按钮。
+     * 布局小巧、美观，避免滚动条出现。
+     */
+    html, body {
+      margin: 0; 
+      padding: 0;
+      height: 100%;
+      overflow: hidden; /* 禁止滚动条 */
+      font-family: sans-serif;
+    }
+    body {
+      /* 柔和渐变背景，让弹窗看起来更美观 */
+      background: linear-gradient(to bottom, #fff5f7 0%, #ffdce6 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    /* 标题或提示文字 */
+    h2 {
+      color: #c44;
+      margin: 0.5rem 0;
+      font-size: 1.1rem;
+    }
+    /* 音频控件宽度适中，方便点击播放按钮 */
+    audio {
+      width: 80%;
+      max-width: 240px; /* 避免在小窗口中过大 */
+      outline: none;
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    p {
+      font-size: 0.85rem;
+      color: #666;
+      margin: 0;
+      padding: 0 0.5rem;
+      text-align: center;
+    }
+    /* 关闭按钮 */
+    button {
+      margin-top: 0.6rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      border: none;
+      cursor: pointer;
+      background-color: #fdd2d8;
+      color: #c44;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      font-size: 0.9rem;
+    }
+    button:hover {
+      background-color: #ffc8cf;
+    }
+  </style>
+</head>
+<body>
+  <h2>音乐播放</h2>
+  <!-- 自动尝试播放 + 循环播放 + 自带控件（方便用户手动播放/暂停） -->
+  <audio src="./music/Felicity.mp3" autoplay loop controls></audio>
+  <p>若无法自动播放，请手动点击“播放”按钮。</p>
+
+  <!-- 提供一个关闭窗口的按钮 -->
+  <button onclick="window.close()">关闭此窗口</button>
+</body>
+</html>

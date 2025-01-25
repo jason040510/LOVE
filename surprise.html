@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>点击揭晓小惊喜</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Microsoft Yahei", sans-serif;
+      background: #fdf1f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    h1 {
+      color: #ff6f91;
+    }
+    .card-container {
+      perspective: 1000px; 
+      margin: 1rem 0;
+    }
+    .card {
+      width: 250px;
+      height: 150px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.6s;
+      cursor: pointer;
+    }
+    .card.is-flipped {
+      transform: rotateY(180deg);
+    }
+    .card-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+    .card-front {
+      background: #ffd4e5;
+    }
+    .card-back {
+      background: #ff9aad;
+      transform: rotateY(180deg);
+      text-align: center;
+      padding: 1rem;
+      box-sizing: border-box;
+      color: #fff;
+      font-size: 1rem;
+    }
+    footer {
+      margin-top: 2rem;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+<h1>两周年纪念日</h1>
+
+<div class="card-container" id="cardContainer">
+  <div class="card" id="card">
+    <!-- 正面 -->
+    <div class="card-face card-front">
+      <p>点击我</p>
+    </div>
+    <!-- 背面 -->
+    <div class="card-face card-back">
+      <p>你是我最想陪伴的人，愿未来我们依旧如此幸福。</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  © 2023 最浪漫的惊喜献给你
+</footer>
+
+<script>
+  const card = document.getElementById('card');
+  card.addEventListener('click', () => {
+    card.classList.toggle('is-flipped');
+  });
+</script>
+
+</body>
+</html>

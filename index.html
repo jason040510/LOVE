@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>两周年纪念 - 封面</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 引入 Google Fonts（国内可能需要其他镜像） -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Noto+Sans+SC:wght@400;700&display=swap" 
+    rel="stylesheet"
+  >
+  <style>
+    /* 全局样式 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      height: 100%;
+    }
+    body {
+      font-family: 'Noto Sans SC', sans-serif;
+      color: #333;
+      position: relative;
+      background-color: #fff1f5;
+      overflow-x: hidden;
+    }
+
+    /* ========== 背景图，完整显示花瓣环绕 ========== */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url("https://images.pexels.com/photos/4041251/pexels-photo-4041251.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2") 
+                  no-repeat center center;
+      background-size: contain;
+      opacity: 0.9;
+      animation: sparkle 10s linear infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+    @keyframes sparkle {
+      0%   {opacity: 0.9;}
+      50%  {opacity: 0.6;}
+      100% {opacity: 0.9;}
+    }
+
+    /* ========== 主容器：用Flex居中放置文字等内容 ========== */
+    .container {
+      position: relative;
+      z-index: 2; 
+      display: flex;
+      flex-direction: column;
+      justify-content: center; 
+      align-items: center;
+      height: 100%;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    /* ========== 标题动画 ========== */
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3rem;
+      color: #ff5e99;
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeInDown 1.2s ease forwards;
+    }
+    @keyframes fadeInDown {
+      0% {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h2 {
+      font-size: 1.3rem;
+      color: #f26798;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeIn 2s ease forwards;
+      animation-delay: 0.5s;
+    }
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* ========== 按钮样式(通用) ========== */
+    .btn {
+      background-color: #ffffffcc;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      color: #ff4f81;
+      cursor: pointer;
+      border-radius: 30px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.16);
+      transition: background-color 0.3s ease;
+      margin-top: 1rem;
+      margin-right: 1rem;
+    }
+    .btn:hover {
+      background-color: #ffedf4;
+    }
+
+    /* 导航链接：时间线页面 */
+    .nav-link {
+      display: inline-block;
+      margin-top: 1rem;
+      background-color: #ffdce6;
+      padding: 0.6rem 1rem;
+      border-radius: 20px;
+      color: #c44;
+      text-decoration: none;
+      transition: background-color 0.3s;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .nav-link:hover {
+      background-color: #ffc8d6;
+    }
+
+    /* ========== 漂浮爱心容器 ========== */
+    .hearts-container {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    /* ========== 彩带容器 ========== */
+    .confetti-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    /* 内容区块示例(可自行删减或修改) */
+    .content-section {
+      max-width: 700px;
+      margin: 2rem auto;
+      text-align: left;
+      animation: fadeIn 2s ease forwards;
+      animation-delay: 1s;
+      background: rgba(255,255,255,0.6);
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .content-section p {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    /* ========== 爱心本身的样式 ========== */
+    .heart {
+      position: absolute;
+      /* 让爱心初始位于底部略下方，漂浮到顶部 */
+      bottom: -40px;
+      width: 30px;
+      height: 30px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-image: url('data:image/svg+xml;utf8,<svg fill="%23ff6f91" viewBox="0 0 32 29.6" xmlns="http://www.w3.org/2000/svg"><path d="M23.6,0c-2.3,0-4.5,0.9-6.1,2.6L16,4.1l-1.5-1.5C13,0.9,10.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,4.7,3.9,8.4,3.9,8.4l11.5,11.1c0.6,0.6,1.5,0.6,2.1,0l11.5-11.1c0,0,3.9-3.8,3.9-8.4C32,3.8,28.2,0,23.6,0z"/></svg>');
+      opacity: 0.85;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 漂浮爱心容器 -->
+  <div class="hearts-container" id="heartsContainer"></div>
+
+  <!-- 彩带容器 -->
+  <div class="confetti-container" id="confettiContainer"></div>
+
+  <div class="container">
+    <h1>两周年快乐</h1>
+    <h2>感谢你一直以来的陪伴，愿往后余生我们能继续相守相依</h2>
+    
+    <!-- 1. 点击放烟花按钮 -->
+    <button class="btn" id="confettiBtn">点击放烟花</button>
+    
+    <!-- 2. 跳转到时间线页面的链接 -->
+    <a href="timeline.html" class="nav-link">回顾我们的时光 →</a>
+    
+    <!-- 3. "播放音乐"按钮：弹出 music.html 新窗口播放音乐 -->
+    <button class="btn" id="musicBtn">播放音乐</button>
+
+    <!-- 内容区块 -->
+    <div class="content-section">
+      <p>时光如花，开在我们牵手走过的每一个日子里。别看这730天好像转瞬即逝，但正如我经常念叨的--甜蜜早已装满了我们的小日常。从第一次悸动到如今的双人默契，从一见如故到如今的默默相守，每一步都珍贵，每一刻都值得被纪念。</p>
+      <p>因此，欢迎来到我们的“两周年专属回忆站”——在这里，你既能读到我们一起写就的浪漫“诗篇”，也能看到潜藏在笑声背后的“搞怪灵魂”。</p>
+      <p>此网页仅是表达爱意的一个小小心思，希望在你的心中能留下一些甜蜜的印记。爱你哟~（ps：我知道这个背景有点土，但是我找不到更好的了，小宝之后可以帮我找一下哦）</p>
+    </div>
+  </div>
+
+  <script>
+    /* ========== 1. 漂浮爱心动画 ========== */
+    const heartsContainer = document.getElementById('heartsContainer');
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      // 随机出现的水平起始位置（0~100vw）
+      heart.style.left = Math.random() * 100 + 'vw';
+      // 随机大小
+      const size = Math.random() * 10 + 20;
+      heart.style.width = size + 'px';
+      heart.style.height = size + 'px';
+
+      // 漂浮时长
+      const duration = Math.random() * 5 + 5; // 5~10秒
+      heart.style.animation = `moveUp ${duration}s linear`;
+
+      heartsContainer.appendChild(heart);
+
+      // 动画结束后自动移除
+      setTimeout(() => {
+        heart.remove();
+      }, duration * 1000);
+    }
+    // 定时生成爱心（每秒一个）
+    setInterval(createHeart, 1000);
+
+    // 在 JS 中注入关键帧动画，让爱心从底部向上漂移到顶部，并旋转
+    const styleSheet = document.createElement('style');
+    styleSheet.type = 'text/css';
+    styleSheet.innerText = `
+      @keyframes moveUp {
+        0% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-120vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(styleSheet);
+
+    /* ========== 2. 点击按钮触发彩带(Confetti)动画 ========== */
+    const confettiBtn = document.getElementById('confettiBtn');
+    const confettiContainer = document.getElementById('confettiContainer');
+
+    function createConfetti() {
+      const confetti = document.createElement('div');
+      confetti.classList.add('confetti');
+      // 随机水平位置
+      confetti.style.left = Math.random() * 100 + 'vw';
+      // 随机大小
+      const size = Math.random() * 8 + 8;
+      confetti.style.width = size + 'px';
+      confetti.style.height = size * 3 + 'px';
+      confetti.style.backgroundColor = randomColor();
+      // 下落时长
+      const fallDuration = Math.random() * 2 + 3;
+      confetti.style.animation = `confettiFall ${fallDuration}s linear`;
+
+      confettiContainer.appendChild(confetti);
+      // 动画结束后移除
+      setTimeout(() => {
+        confetti.remove();
+      }, fallDuration * 1000);
+    }
+
+    function randomColor() {
+      const colors = ['#f56c6c','#409eff','#67c23a','#e6a23c','#909399','#fa7298','#5dbe8f'];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    // 点击“点击放烟花”按钮，连续生成 30 个彩带
+    confettiBtn.addEventListener('click', () => {
+      for (let i = 0; i < 30; i++) {
+        setTimeout(createConfetti, i * 50);
+      }
+    });
+
+    // 注入彩带关键帧动画
+    const confettiStyle = document.createElement('style');
+    confettiStyle.type = 'text/css';
+    confettiStyle.innerText = `
+      .confetti {
+        position: absolute;
+        top: 0;
+        border-radius: 2px;
+        opacity: 0.9;
+      }
+      @keyframes confettiFall {
+        0% {
+          transform: translateY(-5%) rotate(0deg);
+        }
+        100% {
+          transform: translateY(105vh) rotate(720deg);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(confettiStyle);
+
+    /* ========== 3. "播放音乐"：弹出 music.html 新窗口 ========== */
+    const musicBtn = document.getElementById('musicBtn');
+    musicBtn.addEventListener('click', () => {
+      // 使用 window.open 打开一个小窗口播放音乐
+      window.open('music.html', 'musicWindow', 'width=300,height=120');
+    });
+  </script>
+</body>
+</html>

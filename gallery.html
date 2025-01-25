@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>我们的照片墙</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Microsoft Yahei", sans-serif;
+      background: #ffeff3;
+      color: #333;
+    }
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+      background-color: #ffc0cb;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      color: #fff;
+    }
+    main {
+      max-width: 600px;
+      margin: 2rem auto;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      overflow: hidden;
+    }
+    /* 轮播容器 */
+    .slider {
+      position: relative;
+      width: 100%;
+      height: 300px;
+      overflow: hidden;
+      background: #ddd;
+    }
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease;
+      width: 300%;
+    }
+    .slide {
+      flex: 1 0 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #eee;
+    }
+    .slide img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: cover;
+    }
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.7);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    .prev {
+      left: 10px;
+    }
+    .next {
+      right: 10px;
+    }
+
+    /* 留言区 */
+    .message-section {
+      padding: 1rem;
+    }
+    .message-section h2 {
+      margin-top: 0;
+      text-align: center;
+      color: #c44;
+    }
+    .message-list {
+      margin: 1rem 0;
+      padding: 0;
+      list-style: none;
+      max-height: 150px;
+      overflow-y: auto;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .message-list li {
+      padding: 0.5rem;
+      border-bottom: 1px solid #f2f2f2;
+    }
+    .message-list li:last-child {
+      border-bottom: none;
+    }
+    .input-container {
+      display: flex;
+      margin-top: 1rem;
+    }
+    .input-container input {
+      flex: 1;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px 0 0 4px;
+      outline: none;
+    }
+    .input-container button {
+      padding: 0.5rem 1rem;
+      border: none;
+      background-color: #ff9aa2;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 0 4px 4px 0;
+    }
+    .input-container button:hover {
+      background-color: #f77685;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.8rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>我们的美好回忆</h1>
+</header>
+
+<main>
+  <!-- 轮播区域 -->
+  <div class="slider">
+    <div class="slides" id="slides">
+      <div class="slide">
+        <img src="https://picsum.photos/600/300?random=1" alt="photo1"/>
+      </div>
+      <div class="slide">
+        <img src="https://picsum.photos/600/300?random=2" alt="photo2"/>
+      </div>
+      <div class="slide">
+        <img src="https://picsum.photos/600/300?random=3" alt="photo3"/>
+      </div>
+    </div>
+    <button class="nav-btn prev" id="prevBtn">&#10094;</button>
+    <button class="nav-btn next" id="nextBtn">&#10095;</button>
+  </div>
+
+  <!-- 留言区域 -->
+  <div class="message-section">
+    <h2>留下你的想法</h2>
+    <ul class="message-list" id="messageList">
+      <!-- 留言将动态插入这里 -->
+    </ul>
+    <div class="input-container">
+      <input type="text" placeholder="在这里输入留言..." id="messageInput" />
+      <button id="sendBtn">发送</button>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>© 2023 献给我们相爱的纪念</p>
+</footer>
+
+<script>
+  // 简单轮播逻辑
+  let currentIndex = 0;
+  const slides = document.getElementById('slides');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+
+  function showSlide(index) {
+    slides.style.transform = 'translateX(' + (-100 * index) + '%)';
+  }
+
+  prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex <= 0) ? 2 : currentIndex - 1;
+    showSlide(currentIndex);
+  });
+  nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex >= 2) ? 0 : currentIndex + 1;
+    showSlide(currentIndex);
+  });
+
+  // 简单留言逻辑
+  const messageList = document.getElementById('messageList');
+  const messageInput = document.getElementById('messageInput');
+  const sendBtn = document.getElementById('sendBtn');
+
+  sendBtn.addEventListener('click', () => {
+    const msg = messageInput.value.trim();
+    if(msg) {
+      const li = document.createElement('li');
+      li.textContent = msg;
+      messageList.appendChild(li);
+      messageInput.value = '';
+    }
+  });
+</script>
+
+</body>
+</html>
